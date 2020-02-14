@@ -19,44 +19,57 @@ public class Program
             throw new ArgumentNullException();
 
         }
-        int count = 0, index = 1, extra = -11;
-        int[] sort_arr = { };
-        bool x = true;
-        for (int i=0; i < source.Length; i++)
+        int size = source.Length;
+        int count = 0;
+        int[] sort_arr;
+       
+        for (int i=0; i < size; i++)
         {
-            x = false;
-            for (int j = i + 1; j<source.Length; j++)
-            {
-                if (source[i] == source[j])
+            
+            
+            
+                if (!Check(source[i],i,source))
                 {
-                    x = true;
-                    extra = source[i];
-                    
-                }                           
-            }
-            if (source.Length < 4)
-            {
-                if (!x && extra != source[i])
-                {
-                    {
-                        sort_arr = new int[index];
-                        sort_arr[count] = source[i];
-                        count++;
-                        index++;
-                    }
+                    Console.WriteLine("I worked");
+                    count++; 
                 }
-            }
-            
-            
+  
         }
-        if (source.Length > 6)
+        int index=0;
+        sort_arr = new int[count];
+        for(int i=0;i< size;i++)
         {
-            sort_arr = new int[5] { 0, 8, 9, 3, 7 };
+            if (!Check(source[i], i, source))
+            {
+                Console.WriteLine("I worked");
+                sort_arr[index] = source[i];
+                index++;
+            }
         }
+        
         return sort_arr;
 	}
 
 	// ДОБАВЬТЕ НОВЫЕ МЕТОДЫ, ЕСЛИ НЕОБХОДИМО
+
+        public static bool Check(int a, int j, int[] arr)
+    {
+
+        for(int i=0;i<arr.Length;i++)
+        {
+            if(i==j && i+1 < arr.Length)
+            {
+                i++;
+            }
+            if (arr[i] == a && i!=j)
+            {
+                return true;
+            }
+            
+               
+        }
+        return false;
+    }
     
 	// ----- ЗАПРЕЩЕНО ИЗМЕНЯТЬ КОД МЕТОДОВ, КОТОРЫЕ НАХОДЯТСЯ НИЖЕ -----
 
